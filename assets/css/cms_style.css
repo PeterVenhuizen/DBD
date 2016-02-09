@@ -1,0 +1,1382 @@
+/* ACTIVITIES */
+/* AGENDA */
+#activitiesWrapper {
+	width: 970px;
+	margin: 0 auto;
+}
+#activities_explanation {
+	border: 1px dashed #e1e1e1;
+	width: 944px;
+	padding: 10px;
+	margin-bottom: 5px;
+}
+#activities_explanation h2 {
+	margin: 0;
+	font-weight: normal;
+}
+#activities_explanation p {
+	margin: 0;
+}
+#activitiesWrapper .btn_new_activity {
+	border: none;
+	display: block-inline;
+	float: right;	
+	cursor: pointer;
+	background-color: #FFF;
+	background-image: url('../img/plus.PNG');
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 25px;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;	
+	margin: 10px 10px 10px 0;
+}
+#addActivity, #editActivity {
+	width: 960px;
+	font-family: 'Lato', sans-serif;
+	margin: 10px 10px 10px 0;
+	padding: 2px;
+	border: 1px solid #cecece;
+}
+#addActivity > h3, #editActivity > h3 {
+	margin: 0 0 10px 0;
+	font-weight: normal;
+	text-transform: uppercase;	
+}
+#addActivity label, #editActivity label {
+	font-weight: normal;
+	width: 100px;
+	display: inline-block;
+	margin-left: 25px;
+	vertical-align: top;
+}
+#activitiesWrapper input[type="text"] {
+	width: 200px;
+	margin-bottom: 2px;
+	border: 1px solid #E1E1E1;
+	font-size: 13px;
+	height: 16px;
+	line-height: 14px;
+	padding: 3px;				
+}
+#activitiesWrapper input[type="date"] {
+	margin-left: 0;
+	margin-bottom: 2px;
+	border: 1px solid #E1E1E1;
+	font-size: 13px;
+	height: 16px;
+	line-height: 14px;
+	padding: 3px;				
+}
+#activitiesWrapper textarea {
+	margin-left: 0;
+	margin-bottom: 2px;
+	border: 1px solid #E1E1E1;
+	font-size: 13px;
+	width: 300px;
+	height: 140px;
+	line-height: 14px;
+	padding: 3px;	
+	font-family: 'Lato', sans-serif;			
+}
+#addActivity > input[type=submit], #editActivity > input[type=submit] {
+	border: 1px solid #cecece;
+	width: 100px; 
+	height: 30px; 
+	margin: 10px 0 0 0;
+	cursor: pointer;
+}
+#activities {
+	width: 964px;
+	font-family: 'Lato', sans-serif;
+	border-collapse: collapse;
+	border: 2px solid #FFF;
+	outline: 1px solid #e1e1e1;
+}
+#activies th {
+	padding: 2px;
+}
+#activities td {
+	padding: 5px 2px;
+	font-size: 16px;
+	vertical-align: top;
+}
+#activities .actTitle {
+	width: 220px;
+}
+#activities .actDate {
+	width: 60px;
+}
+#activities .actDescription {
+	width: 390px;
+	text-align: justify;
+	padding-right: 10px;
+}
+#activies .actSubscribers {
+	width: 100px;
+}
+#activities .actActive {
+	text-align: center;
+}
+#activities .actEdit, #activities .actDelete {
+	width: 30px;
+}
+#activities tr:nth-child(odd) {
+	background-color: rgba(206, 206, 206, 0.2);
+}
+#activities tr:first-child {
+	line-height: 30px;
+	text-align: left;
+}
+
+
+/* ANFANG */
+#cms_home_wrapper {
+	width: 980px;
+	padding: 20px;
+	margin: 0 auto;
+	border: 1px dashed #e1e1e1;
+}
+#cms_home_wrapper h2 {
+	font-weight: normal;
+	margin: 0;
+}
+#cms_home_wrapper p {
+	text-align: justify;
+}
+
+
+/* AGENDA */
+#agendaWrapper {
+	width: 970px;
+	margin: 0 auto;
+}
+#agenda_explanation {
+	border: 1px dashed #e1e1e1;
+	width: 944px;
+	padding: 10px;
+	margin-bottom: 5px;
+}
+#agenda_explanation h2 {
+	margin: 0 0 5px 0;
+	font-weight: normal;
+}
+#agenda_explanation p {
+	margin: 0;
+}
+#agendaWrapper .btn_new_activity {
+	border: none;
+	display: block-inline;
+	float: right;	
+	cursor: pointer;
+	background-color: #FFF;
+	background-image: url('../img/plus.PNG');
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 25px;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;	
+	margin: 10px 10px 10px 0;
+}
+#addEvent {
+	width: 960px;
+	font-family: 'Lato', sans-serif;
+	margin: 10px 10px 10px 0;
+	padding: 2px;
+	border: 1px solid #cecece;
+}
+#addEvent > h3 {
+	margin: 0 0 10px 0;
+	font-weight: normal;
+	text-transform: uppercase;	
+}
+#addEvent label{
+	font-weight: normal;
+	width: 100px;
+	display: inline-block;
+	margin-left: 25px;
+}
+#addEvent .indent {
+	margin-left: 5px;
+}
+#agendaWrapper input[type="text"] {
+	width: 200px;
+	margin-bottom: 2px;
+	border: 1px solid #E1E1E1;
+	font-size: 13px;
+	height: 16px;
+	line-height: 14px;
+	padding: 3px;				
+}
+#agendaWrapper input[type="date"] {
+	margin-left: 0;
+	margin-bottom: 2px;
+	border: 1px solid #E1E1E1;
+	font-size: 13px;
+	height: 16px;
+	line-height: 14px;
+	padding: 3px;				
+}
+#agendaWrapper input[type="time"] {			
+	width: 70px;
+	margin-bottom: 2px;
+	border: 1px solid #E1E1E1;
+	font-size: 13px;
+	height: 16px;
+	line-height: 14px;
+	padding: 3px;				
+}
+#addEvent > input[type=submit] {
+	border: 1px solid #cecece;
+	width: 100px; 
+	height: 30px; 
+	margin: 10px 0 0 0;
+	cursor: pointer;
+}
+#agenda {
+	width: 964px;
+	font-family: 'Lato', sans-serif;
+	border-collapse: collapse;
+	border: 2px solid #FFF;
+	outline: 1px solid #e1e1e1;
+}
+#agenda th {
+	padding: 2px;
+}
+#agenda td {
+	padding: 5px 2px;
+	font-size: 16px;
+}
+#agenda .columnID {
+	width: 30px;
+}
+#agenda .columnEvent {
+	width: 300px;
+}
+#agenda .columnDate {
+	width: 200px;
+}
+#agenda .columnTime {
+	width: 100px;
+}
+#agenda .columnLocation {
+	width: 300px;
+}
+#agenda .columnDelete {
+	width: 30px;
+}
+#agenda tr:nth-child(odd) {
+	background-color: rgba(206, 206, 206, 0.2);
+}
+#agenda tr:first-child {
+	line-height: 30px;
+	text-align: left;
+}
+
+
+/* BUTTONS */
+.btn_remove {
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	cursor: pointer;	
+	border: 0px;
+	background-color: rgba(0, 0, 0, 0.0);
+	background-image: url('../img/dialog-close.png');
+}
+.btn_edit {
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	cursor: pointer;	
+	border: 0px;
+	background-color: rgba(0, 0, 0, 0.0);
+	background-image: url('../img/edit.png');
+}
+
+
+/* COMPETITION */
+#competition {
+	width: 1100px;
+	margin: 0 auto;
+}
+.btn_team {
+	border: 1px solid #cecece;
+	display: block-inline;
+	width: 140px; 
+	height: 40px;
+	cursor: pointer;	
+	padding: 0;
+	margin-right: 10px;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;
+}
+#btn_new_team {
+	border: none;
+	display: block-inline;
+	height: 40px;
+	float: right;	
+	cursor: pointer;
+	background-color: #FFF;
+	background-image: url('../img/plus.PNG');
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 25px;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;	
+}
+.btn_delete_team {
+	border: none;
+	display: block-inline;
+	margin-top: 5px;
+	float: right;	
+	cursor: pointer;
+	background-color: #FFF;
+	background-image: url('../img/dialog-close.png');
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 25px;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;
+}
+/* Add team */
+#add_team {
+	width: 1096px;
+	margin: 10px 10px 10px 0;
+	padding: 2px;
+	border: 1px solid #cecece;
+}
+#add_team > h3 {
+	margin: 0 0 10px 0;
+	font-weight: normal;
+	text-transform: uppercase;	
+}
+#add_team > label {
+	font-weight: normal;
+	width: 100px;
+	display: inline-block;
+}
+#add_team > input[type="text"] {
+	margin-bottom: 2px;
+	border: 1px solid #E1E1E1;
+	font-size: 13px;
+	height: 16px;
+	line-height: 14px;
+	padding: 3px;
+}
+#add_team > #submit_new_team {
+	border: 1px solid #cecece;
+	display: block-inline;
+	width: 100px; 
+	height: 30px;
+	cursor: pointer;	
+	padding: 0;
+	font-family: 'Lato', sans-serif;
+	font-size: 13px;
+}
+/* Team competition */
+#manage_team_competition {
+	width: 1096px;
+	margin: 10px 10px 10px 0;
+	padding: 2px;
+	border: 1px solid #cecece;
+}
+#manage_team_competition > h3 {
+	margin: 0 0 10px 0;
+	font-weight: normal;
+	text-transform: uppercase;	
+}
+#btn_new_competition {
+	margin-top: -5px;
+	border: none;
+	display: block-inline;
+	float: right;	
+	cursor: pointer;
+	background-color: #FFF;
+	background-image: url('../img/plus.PNG');
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 25px;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;	
+}
+.btn_delete_competition {
+	margin-top: -5px;
+	border: none;
+	display: block-inline;
+	float: right;	
+	cursor: pointer;
+	background-color: #FFF;
+	background-image: url('../img/dialog-close.png');
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 25px;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;	
+}
+#create_competition {
+	margin-top: 15px;
+}
+#create_competition > h3 {
+	margin: 0 0 10px 0;
+	font-weight: normal;
+	text-transform: uppercase;	
+}
+#create_competition > label {
+	font-weight: normal;
+	width: 100px;
+	display: inline-block;
+}
+#create_competition > input[type="date"] {
+	margin-bottom: 2px;
+	border: 1px solid #E1E1E1;
+	font-size: 13px;
+	height: 16px;
+	line-height: 14px;
+	padding: 3px;
+}
+#create_competition > #submit_competition {
+	border: 1px solid #cecece;
+	display: block-inline;
+	width: 100px; 
+	height: 30px;
+	cursor: pointer;	
+	padding: 0;
+	font-family: 'Lato', sans-serif;
+	font-size: 13px;
+}
+/* Match overview */
+.team_matches {
+	width: 1100px;
+	border-collapse: collapse;
+	border: 2px solid #FFF;
+	outline: 1px solid #e1e1e1;
+	margin: 10px auto;
+}
+.team_matches th {
+	padding: 2px;
+}
+.team_matches td {
+	padding: 5px 2px;
+	font-size: 16px;
+}
+.team_matches .clmn_match_id {
+	width: 30px;
+}
+.team_matches .clmn_match_date {
+	width: 60px;
+}
+.team_matches .clmn_match_time {
+	width: 80px;
+}
+.team_matches .clmn_match_teams {
+	width: 370px;
+}
+.team_matches .clmn_match_location { 
+	width: 380px;
+}
+.team_matches .home_goals, .away_goals {
+	width: 20px;
+	margin-bottom: 2px;
+	border: 1px solid #E1E1E1;
+	font-size: 13px;
+	height: 16px;
+	line-height: 14px;
+	padding: 3px;	
+}
+.team_matches tr:nth-child(odd) {
+	background-color: rgba(206, 206, 206, 0.2);
+}
+.team_matches tr:first-child {
+	line-height: 30px;
+	text-align: left;
+}
+/* New match */
+.btn_add_new_match {
+	border: none;
+	display: block-inline;
+	margin-top: 5px;
+	float: right;	
+	cursor: pointer;
+	background-color: #FFF;
+	background-image: url('../img/plus.PNG');
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 25px;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;	
+}
+#form_add_match {
+	width: 1096px;
+	margin: 10px 10px 10px 0;
+	padding: 2px;
+	border: 1px solid #cecece;
+}
+#form_add_match > h3 {
+	margin: 0 0 10px 0;
+	font-weight: normal;
+	text-transform: uppercase;	
+}
+#form_add_match > label {
+	font-weight: normal;
+	width: 100px;
+	display: inline-block;
+}
+#form_add_match > input[type="text"], #form_add_match > input[type="date"], #form_add_match > input[type="time"] {
+	margin-bottom: 2px;
+	border: 1px solid #E1E1E1;
+	font-size: 13px;
+	height: 16px;
+	line-height: 14px;
+	padding: 3px;
+}
+#form_add_match > .submit_new_match {
+	border: 1px solid #cecece;
+	display: block-inline;
+	width: 100px; 
+	height: 30px;
+	cursor: pointer;	
+	padding: 0;
+	font-family: 'Lato', sans-serif;
+	font-size: 13px;
+}
+
+
+/* CONTACTS */
+#contactWrapper {
+	width: 1000px;
+	margin: 0 auto;
+}
+#contactWrapper h2 {
+	font-size: 26px;
+	font-weight: normal;
+	margin: 0 0 10px 0;
+}
+.btn_new_contact {
+	border: none;
+	display: block-inline;	
+	cursor: pointer;
+	background-color: #FFF;
+	background-image: url('../img/plus.PNG');
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 25px;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;	
+	margin: 15px 10px 5px 535px;
+}
+#addContact {
+	width: 640px;
+	font-family: 'Lato', sans-serif;
+	margin: 10px 10px 10px 0;
+	padding: 2px;
+	border: 1px solid #cecece;
+}
+#addContact > h3 {
+	margin: 0 0 10px 0;
+	font-weight: normal;
+	text-transform: uppercase;	
+}
+#addContact label{
+	font-weight: normal;
+	width: 100px;
+	display: inline-block;
+	margin-left: 25px;
+}
+#contactWrapper input[type="text"], #contactWrapper input[type="email"] {
+	width: 250px;
+	margin-bottom: 2px;
+	border: 1px solid #E1E1E1;
+	font-size: 13px;
+	height: 16px;
+	line-height: 14px;
+	padding: 3px;					
+}
+#addContact > input[type=submit] {
+	border: 1px solid #cecece;
+	width: 100px; 
+	height: 30px; 
+	margin: 10px 0 0 0;
+	cursor: pointer;
+}
+#contacts {
+	width: 660px;
+	font-family: 'Lato', sans-serif;
+	border-collapse: collapse;
+	border: 2px solid #FFF;
+	outline: 1px solid #e1e1e1;
+}
+#contacts th {
+	padding: 2px;
+}
+#contacts td {
+	padding: 5px 2px;
+	font-size: 16px;
+}
+#contacts .contactFunction {
+	width: 300px;
+}
+#contacts .contactEmail {
+	width: 315px;
+}
+#contacts .columnDelete {
+	width: 30px;
+}
+#contacts tr:nth-child(odd) {
+	background-color: rgba(206, 206, 206, 0.2);
+}
+#contacts tr:first-child {
+	line-height: 30px;
+	text-align: left;
+}
+
+
+/* FIELD VALIDATION */
+.error {
+	border: 1px solid #f10000;
+	background: rgba(240, 0, 0, 0.2);			
+}
+.correct {
+	border: 1px solid #24c64e;
+	background: rgba(36, 198, 78, 0.2);				
+}
+
+
+/* FOOTER */
+#footer {
+	width: 1000px;
+	margin: 0 auto;
+	clear: both;
+	margin-top: 20px;
+}
+
+
+/* GENERAL */
+@font-face {
+	font-family: 'Lato';
+	src: url('font/Lato-Lig-webfont.eot');
+	src: url('font/Lato-Lig.eot?#iefix') format('embedded-opentype'), 
+		url('font/Lato-Lig-webfont.woff') format('woff'),
+		url('font/Lato-Lig-webfont.ttf') format('truetype'),
+		url('font/Lato-Lig-webfont.svg#webfont') format('svg');
+}
+body {
+	font-family: 'Lato', sans-serif;
+}	
+/*CMS Wrapper*/
+#cmswrapper {
+	width: 1400px;
+	margin: 0 auto;
+	padding: 10px;
+	overflow: hidden;	
+}
+input[type=text] {
+	font-family: 'Lato', sans-serif;		
+}
+
+
+/* INDEX */
+#todo {
+	margin: 20px;
+}
+
+
+/* LOGIN */
+#form_login {
+	margin: 10px;
+	width: 450px;
+	float: left;
+}
+#form_login > h1 {
+	font-family: 'Lato', sans-serif;
+	color: #F12424;
+	margin: 0 0 5px 0;
+}
+#form_login > label {
+	font-weight: normal;
+	width: 150px;
+	display: inline-block;
+}
+#form_login > input[type=text], #form_login > input[type=password], #form_register > input[type=text], #form_register > input[type=password] {
+	margin-bottom: 2px;
+	width: 160px;
+	border: 1px solid #E1E1E1;
+	font-size: 13px;
+	height: 16px;
+	line-height: 14px;
+	padding: 3px;				
+}			
+#form_login > input[type=submit] {
+	border: 1px solid #cecece;
+	display: block-inline;
+	width: 100px; 
+	height: 30px;
+	cursor: pointer;	
+	padding: 0;
+	font-family: 'Lato', sans-serif;
+	font-size: 13px;
+	margin: 5px 0 0 0;		
+}
+#login_error {
+	color: #F12424;
+	height: 30px;
+	line-height: 30px;
+	background-image: url('../img/warning_icon.png');
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 28px;
+}
+
+
+/* MENU/PAGE HEADER */
+#page_header {
+	width: 1200px;
+	background-color: #FFF;
+	height: 125px;
+	z-index: 10;
+	margin: 25px auto;
+}
+/* Club name and search bar */
+#head {
+	position: relative;
+	width: 840px;
+	height: 50px;
+	margin: -10px 0 10px 170px;	
+}
+/* Club name */
+#dbd {
+	font-family: 'Lato', sans-serif;
+	color: #000;
+	padding: 0;
+	font-size: 40px;
+	display: inline;
+	font-weight: normal;
+	margin-left: -10px;
+}
+#logo {
+	background-image: url('../img/dbd_logo_black.png');
+	background-size: 100px;
+	width: 100px;
+	height: 100px;
+	float: left;
+	z-index: 100;
+	opacity: 0.95;
+	margin: -60px 10px 0 10px;
+}
+#logo > a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+#menu {
+	font-family: Lato, sans-serif;
+	margin-left: 10px;
+}
+#menu {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+#menu li {
+	float: left;
+	width: 110px;
+}
+#menu a:link,a:visited
+{
+	display: block;
+	width: 110px;
+	color: #000000;
+	text-align: center;
+	text-decoration: none;
+	padding: 5px;
+}
+#menu a:hover,a:active
+{
+	color: #e1e1e1;
+	text-decoration: underline;
+}
+
+
+/* NEWS */
+#newsWrapper {
+	width: 1100px;
+	margin: 0 auto;
+	padding: 10px;
+	overflow: hidden;
+}			
+#btn_createNewsItem {
+	border: none;
+	display: inline;
+	height: 30px; 
+	margin: 10px 0 0 0;
+	cursor: pointer;
+	font-family: 'Lato';
+	font-size: 16px;
+	background-image: url('../img/plus.PNG');
+	background-repeat: no-repeat;
+	background-position: 5px center;
+	padding-left: 30px;
+	background-color: #FFF;
+}
+.h2header {
+	font-size: 32px;
+	font-weight: bold;
+	margin: 10px 0 0 0;
+}
+#createNews {
+	margin: 10px;
+	width: 1100px;
+	margin: 0 auto;
+}
+.lblNewsTopic {
+	font-size: 30px;
+	font-weight: bold;
+}
+#newsTopic, #updateNewsTopic {
+	font-family: 'Lato', sans-serif;
+	font-size: 36px;
+	width: 525px;
+	height: 50px;
+	border: 1px solid #e1e1e1;
+	display: inline-block;
+	padding: 0 5px;
+	margin: 10px 0;
+}
+.lblNewsPublished {
+	margin-left: 230px;
+}
+#newsCategory, #updateNewsCategory {
+	margin: 10px 5px 10px 0;
+}
+.lblNewsIsSticky {
+	margin-left: 760px;
+}
+#newsReset, #newsSubmit, #newsUpdate {
+	border: 1px solid #cecece;
+	width: 100px; 
+	height: 30px; 
+	margin: 10px 0 10px 10px;
+	float: right;
+	cursor: pointer;
+}
+/* News table overview */
+#articles {
+	width: 1100px;
+	font-family: 'Lato', sans-serif;
+	border-collapse: collapse;
+	border: 2px solid #FFF;
+	outline: 1px solid #e1e1e1;
+	margin: 10px auto;
+}
+#articles th {
+	padding: 2px;
+}
+#articles td {
+	padding: 5px 2px;
+	font-size: 16px;
+}
+#articles .articleID {
+	width: 30px;
+}
+#articles .articleTitle {
+	width: 650px;
+}
+#articles .articlePubdate {
+	width: 120px;
+}
+#articles .articleCategory {
+	width: 100px;
+}
+#articles .articlePublished, .articleSticky {
+	text-align: center;
+}
+#articles .articleEdit {
+	width: 30px;
+}
+#articles .articleDelete {
+	width: 30px;
+}
+#articles tr:nth-child(odd) {
+	background-color: rgba(206, 206, 206, 0.2);
+}
+#articles tr:first-child {
+	line-height: 30px;
+	text-align: left;
+}
+
+
+/* PAGE STRUCTURE */
+#vcup_referal {
+	width: 1325px;
+	margin: 0 auto;
+}
+#pagestructureWrapper {
+	width: 1350px;
+	margin: 0 auto;
+}
+/* Page Structure Tree */
+#page_tree {
+	font-family: 'Lato', sans-serif;			
+	height: 700px;
+	width: 198px;
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+.h2header {
+	font-size: 32px;
+	font-weight: bold;
+	margin: 10px 0 0 10px;
+	text-transform: uppercase;
+}
+legend {
+	font-size: 12px;
+	margin: 10px 0 0 10px;
+}
+#page_tree ul {
+	padding: 0 10px;
+	margin-top: 10px;
+	list-style-type: none;
+	min-width: 150px;
+}
+#page_tree li.menu_page {
+	font-size: 18px;
+	cursor: pointer;
+	display: block;
+	border: 1px solid #e1e1e1;
+	padding: 5px;
+	font-weight: bold;
+	margin: 0 0 5px 0;
+}
+#page_tree li.menu_new_page {
+	font-size: 18px;
+	display: block;
+	border: 1px dashed #e1e1e1;
+	padding: 5px;
+	font-weight: bold;
+	margin: 0 0 5px 0;
+}
+#page_tree .menuh2, .menuh2new {
+	margin: 0;
+	display: inline;
+	font-size: 18px;
+	font-weight: normal;
+}
+.createNewSubpage {
+	float: right;
+	opacity: 0.7;
+	filter: alpha(opacity=70);								
+}
+.createNewMenuPage {
+	float: right;
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+	cursor: pointer;
+}
+.locked {
+	float: right;
+	margin-right: 3px;
+	opacity:0.4;
+	filter:alpha(opacity=40);				
+}
+span.count_children {
+	font-size: 15px;
+	margin-left: 5px;
+}
+span.count_children h6 {
+	font-size: 14px;
+	margin: 0;
+	display: inline;
+	font-weight: normal;
+}
+#page_tree a {
+	font-size: 15px;		
+	text-decoration: none;
+	margin: 0;
+	font-weight: normal;
+}
+#page_tree a:hover {
+	text-decoration: underline;
+}
+#page_tree ul li ul {
+	list-style-type: circle;
+	border: none;
+	padding: 0 0 0 30px;
+	margin: 0;
+	font-weight: normal;
+}
+/* Sub page */
+#subpage_editor {
+	float: left;
+	min-width: 1118px;
+	min-height: 700px;
+}
+/* Create new menu item */
+#editMenuItem {
+	font-family: 'Lato', sans-serif;			
+	width: 780px;
+	margin: 0 20px 0 10px;			
+}
+#editMenuItem > h2 {
+	margin-left: 0;
+}
+.lbEditMenuName {
+	font-size: 30px;
+	font-weight: bold;				
+}
+#editMenuName {
+	font-family: 'Lato', sans-serif;			
+	font-size: 36px;
+	width: 525px;
+	height: 50px;
+	border: 1px solid #e1e1e1;
+	display: inline-block;
+	padding: 0 5px;
+	margin: 10px 0;		
+}
+.lbSmallMenuItem {
+	font-weight: bold;
+}
+#itemOrder {
+	width: 30px;
+	margin-right: 100px;
+	border: 1px solid #e1e1e1;				
+}
+.lbMenuURL {
+	font-weight: bold;
+	margin-left: 95px;
+}
+#menuURL {
+	width: 200px;
+	border: 1px solid #e1e1e1;
+	float: right;				
+}
+#deleteMItem, #editMItem, #createMenuItem {
+	border: 1px solid #cecece;
+	width: 100px; 
+	height: 30px; 
+	margin: 10px 0 10px 10px;
+	float: right;
+	cursor: pointer;
+}			
+#subPageEdit > input[type=submit] {
+	border: 1px solid #cecece;
+	width: 100px; 
+	height: 30px; 
+	margin: 10px 0 10px 10px;
+	float: right;
+	cursor: pointer;
+}
+/* Create new subpage */
+#createPage {
+	font-family: 'Lato', sans-serif;			
+	width: 800px;
+	display: none;
+	margin-left: 10px;
+}
+#createPage > h2 {
+	margin-left: 0;
+}
+.lbAddPage {
+	font-size: 30px;
+	font-weight: bold;
+}
+#pageTitle {	
+	font-size: 36px;
+	width: 500px;
+	height: 50px;
+	border: 1px solid #e1e1e1;
+	display: inline-block;
+	padding: 0 5px;
+	margin-top: 10px;				
+}
+#addPage {
+	height: 52px;
+	width: 52px;
+	border: 1px solid #cecece;
+	display: inline-block;
+	cursor: pointer;		
+	margin-top: 10px;
+	vertical-align: top;
+	padding: 0;
+}
+/* Edit subpage */
+#subPageEdit {
+	font-family: 'Lato', sans-serif;
+	font-size: 14px;
+	width: 1098px;
+	margin: 0 auto;
+	margin-top: 10px;
+	display: none;
+}
+#subPageEdit > h2 {
+	margin: 0 0 10px 0;
+}
+.spTitle {
+	font-size: 30px;
+	font-weight: bold;
+}
+.spLabel {
+	font-weight: bold;
+	margin: 10px 0 0 5px;
+}
+.lbPageOrder {
+	font-weight: bold;
+	margin-left: 100px;
+}
+#subTitle {
+	font-family: 'Lato', sans-serif;
+	font-size: 36px;
+	width: 500px;
+	height: 50px;
+	border: 1px solid #e1e1e1;
+	display: inline-block;
+	padding: 0 5px;
+	margin: 0 10px 10px 0;
+}
+#subPageEdit > input[type=submit] {
+	border: 1px solid #cecece;
+	width: 100px; 
+	height: 30px; 
+	margin: 10px 0 10px 10px;
+	float: right;
+	cursor: pointer;
+}
+
+
+/* PHOTOS */
+#uploadwrapper {
+	width: 1200px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.upload_step {
+	width: 288px;
+	padding: 5px;
+	float: left;
+	min-height: 400px;
+}
+.upload_step h1 {
+	font-family: 'Lato';
+	font-size: 22px;
+	font-weight: normal;
+	margin: 0 0 5px 0;
+}
+.upload_step h1 b {
+	font-size: 40px;
+}
+.step_overlay {
+	position: relative; /* makes the div go into a position that’s absolute to the browser viewing area */
+	background-color: #ffffff;
+	-moz-opacity: 0.05; /* makes the div transparent, so you have a cool overlay effect */
+	opacity: .05;
+	filter: alpha(opacity=5);				
+	width: 288px;
+	min-height: 400px;
+	z-index: 100;
+}			
+.upload_choice {
+	display: inline-block;
+	margin: 0 5px 5px 5px;
+	cursor: pointer;
+}
+#create_new_photo_album label {
+	margin: 5px;
+}
+#create_new_photo_album input[type="text"] {
+	margin: 5px;
+	width: 270px;
+	border: 1px solid #E1E1E1;
+	font-size: 13px;
+	height: 16px;
+	line-height: 14px;
+	padding: 3px;
+}
+#create_new_photo_album input[type="date"] {
+	margin: 5px;
+	width: 120px;
+	border: 1px solid #E1E1E1;
+	font-size: 13px;
+	height: 16px;
+	line-height: 14px;
+	padding: 3px;			
+}
+.upload_info {
+	width: 283px;
+	margin: 5px 0;
+	padding: 2px;
+	border: 1px dashed #e1e1e1;
+}	
+.next {
+	float: right;
+	font-family: 'Lato';
+	background-image: url('../img/next_icon.png');
+	background-repeat: no-repeat;
+	background-position: right;
+	height: 34px;
+	padding: 0 35px 0 5px;				
+	margin-right: -1px;
+	cursor: pointer;
+	background-color: #fff;
+	line-height: 28px;
+	font-size: 16px;
+	border: 1px solid #e1e1e1;
+}
+#select_folder {
+	margin-bottom: 5px;
+}
+
+#drop{
+	padding: 60px 50px;
+	margin-bottom: 10px;
+	border: 3px dashed #e1e1e1;
+	border-radius: 3px;
+	text-align: center;
+	text-transform: uppercase;
+	font-size:16px;
+	font-weight:bold;
+}
+#drop a{
+	padding:12px 26px;
+	color: #000;
+	font-size:14px;
+	border-radius:2px;
+	cursor:pointer;
+	display:inline-block;
+	margin-top:12px;
+	line-height:1;
+	border: 2px solid #000;
+}
+#drop a:hover{
+	background-color:#e1e1e1;
+}
+#drop input{
+	display:none;
+}	
+
+#upload ul{
+	list-style:none;
+	margin-left: -40px;
+}
+
+#upload ul li{
+	padding: 5px;
+	height: 20px;
+	position: relative;
+}
+
+#upload ul li input{
+	display: none;
+}
+
+#upload ul li p{
+	width: 144px;
+	overflow: hidden;
+	white-space: nowrap;
+	color: #000;
+	font-size: 16px;
+	font-weight: bold;
+	position: absolute;
+	top: -9px;
+	left: 60px;
+}
+
+#upload ul li canvas{
+	top: 5px;
+	left: 32px;
+	height: 20px;
+	position: absolute;
+}
+
+#upload ul li span{
+	width: 15px;
+	height: 12px;
+	background: url('../img/icons.png') no-repeat;
+	position: absolute;
+	top: 9px;
+	right: 33px;
+	cursor:pointer;
+}
+
+#upload ul li.working span{
+	height: 16px;
+	background-position: 0 -12px;
+}
+
+#upload ul li.error p{
+	color:red;
+}	
+#nr_uploads {
+	margin: 0 0 0 10px;
+	padding: 0;
+}
+count {
+	font-weight: bold;
+}
+
+
+/* USER RIGHTS */
+#userRights {
+	width: 1000px;
+	margin: 0 auto;
+	overflow: hidden;
+	margin-top: 10px;
+}
+#userRights h2 {
+	font-size: 26px;
+	font-weight: normal;
+	margin: 10px 0 10px 0;
+}
+#users {
+	width: 660px;
+	float: left;
+	border-collapse: collapse;					
+	border: 2px solid #FFF;
+	outline: 1px solid #e1e1e1;		
+	font-family: 'Lato', sans-serif;
+		
+}
+#users th {
+	padding: 2px;
+}
+#users td {
+	padding: 5px 2px;
+	font-size: 16px;
+}
+#users .userName {
+	width: 300px;
+}
+#users .userEmail {
+	width: 300px;
+}
+#users .userRights {
+	width: 50px;
+}
+.user_rights {
+	margin-bottom: 2px;
+	width: 20px;
+	border: 1px solid #E1E1E1;
+	font-size: 13px;
+	height: 16px;
+	line-height: 14px;
+	padding: 3px;	
+}
+#users tr:nth-child(odd) {
+	background-color: rgba(206, 206, 206, 0.2);
+}
+#users tr:first-child {
+	line-height: 30px;
+	text-align: left;
+}
+#rights_explanation {
+	width: 290px;
+	float: left;
+	border: 1px dashed #E1E1E1;
+	padding: 5px;
+	margin: 0 5px;
+}
+#rights_explanation h2 {
+	margin: 0;
+}

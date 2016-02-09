@@ -1,0 +1,33 @@
+<IfModule mod_rewrite.c>
+	
+	#Turn rewrite engine on
+	RewriteEngine on
+	
+	#Contact
+	RewriteRule ^Contact/?$ contact.php [L,QSA]
+
+	#Subpages
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d	
+	RewriteRule ^(\w+)/([\wÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ!-_]+)/$ page.php?parentName=$1&pageName=$2 [L,QSA]
+	
+	#News
+	RewriteRule ^Nieuws/(\d+)/([\wÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ!-_]+)$ news.php?id=$1&title=$2 [L,QSA]
+	
+	#Remove 'www' from any url
+	RewriteCond %{HTTP_HOST} ^www\.petervenhuizen\.nl$ [NC]   
+	RewriteRule ^(.*)$ http://petervenhuizen.nl/$1 [R=301,L]  
+	
+	#Prevent Hotlinking and throw 403 warning
+	#RewriteCond %{HTTP_REFERER} !^http://petervenhuizen\.nl/?.*$ [NC]  
+	#RewriteRule \.(gif|jpe?g|png|bmp)$ – [F,NC] 	
+
+	#Remove index.php
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ /index.php/$1 [L,QSA]
+	
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s(.*)/index\.php [NC]
+	RewriteRule ^ %1 [R=301,L]	
+	
+</IfModule>
