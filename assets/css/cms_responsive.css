@@ -32,11 +32,16 @@ a { text-decoration: none; cursor: pointer; }
 #cms_footer { margin: 1em 0; }
 
 /* GENERAL */
-article { margin-top: 0.5em; padding: 1em; border: 1px dashed #e1e1e1; }
+article { padding: 1em; border: 1px dashed #e1e1e1; }
 article h2 { margin: 0 0 0.5em 0; }
 article p { margin: 0; }
 
-.img_get_help { width: 30px; cursor: help; }
+.img_get_help { 
+	width: 30px; 
+	cursor: help; 
+	vertical-align: middle;
+	margin-bottom: 0.5em;
+}
 article.help { display: none; margin-bottom: 0.5em; }
 
 /* TABLES */
@@ -70,6 +75,11 @@ table td { padding: 0.2em 0.5em; }
     font-size: 1em; 
     font-family: 'Lato', sans-serif;
     float: right;
+}
+.btn_other {
+	border: 1px solid #CECECE;
+	height: 30px;
+	cursor: pointer;
 }
 
 /* ACTIVITIES */
@@ -174,6 +184,14 @@ li.download {
 	background-repeat: no-repeat;
 	background-position: center center;
 	cursor: pointer;
+}
+
+/* USERS */
+.user_id { display: none; }
+#btn_download { 
+	display: inline-block; 
+	vertical-align: middle; 
+	margin: 0 0 0.5em 0.5em;	
 }
 
 
