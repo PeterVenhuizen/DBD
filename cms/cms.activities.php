@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 
-<?php require_once('../assets/config.php'); ?>
+<?php 
+	require_once('../assets/config.php'); 
+	include 'actions/functions.php';
+	ini_set('display_errors', 1);error_reporting(E_ALL);
+	date_default_timezone_set('Europe/Amsterdam');
+?>
 
 <html>
 
@@ -76,26 +81,24 @@
             
             	// Add activity
                 if (isset($_POST['submit_activity'])) {
-                    $activity = mysql_real_escape_string($_POST['activity']);
-                    $date = mysql_real_escape_string($_POST['date']);
-                    $mysql_date = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $date)));
-                    $desc = mysql_real_escape_string($_POST['description']);
-                    $online = mysql_real_escape_string($_POST['online']);
-                    
+                    $mysql_date = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $_POST['date'])));
                     $query = 'INSERT INTO events (title, edate, description, active) VALUES (:title, :date, :desc, :online)';
-                    $query_params = array(':title' => $activity, ':date' => $mysql_date, ':desc' => $desc, ':online' => $online);
+                    $query_params = array(':title' => $_POST['activity'], ':date' => $mysql_date, ':desc' => $_POST['description'], ':online' => $_POST['online']);
                     try {
                         $stmt = $db->prepare($query);
                         $stmt->execute($query_params);
-                        echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=cms.activities.php">';
 					} catch (PDOException $ex) { die(); }
+					
+					add_to_log($db, array('user' => $_SESSION['user']['email'], 'action' => 'ADD', 'page' => 'cms.activities.php', 'desc' => $_POST['activity']));
+                    echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=cms.activities.php">';
+
                 }
                 
                 // Edit activity
                 if (isset($_GET['act_id'])) {
                 	try {
                 		$stmt = $db->prepare('SELECT * FROM events WHERE id = :id LIMIT 1');
-                		$stmt->execute(array(':id' => mysql_real_escape_string($_GET['act_id'])));
+                		$stmt->execute(array(':id' => $_GET['act_id']));
                 	} catch (PDOException $ex) { die(); }
 					if ($stmt->rowCount()) {
 	                	$row = $stmt->fetch();
@@ -128,19 +131,17 @@
     	            }
     	            
 		            if (isset($_POST['submit_edit_activity'])) {
-		                $activity = mysql_real_escape_string($_POST['edit_activity']);
-		                $date = mysql_real_escape_string($_POST['edit_date']);
-		                $mysql_date = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $date)));
-		                $desc = mysql_real_escape_string($_POST['edit_description']);
-		                $online = mysql_real_escape_string($_POST['edit_online']);
-		                
+		                $mysql_date = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $_POST['edit_date'])));
 		                $query = 'UPDATE events SET title = :title, edate = :date, description = :desc, active = :online WHERE id = :id';
-		                $query_params = array(':title' => $activity, ':date' => $mysql_date, ':desc' => $desc, ':online' => $online, ':id' => $row['id']);
+		                $query_params = array(':title' => $_POST['edit_activity'], ':date' => $mysql_date, ':desc' => $_POST['edit_description'], ':online' => $_POST['edit_online'], ':id' => $row['id']);
 		                try {
 		                    $stmt = $db->prepare($query);
 		                    $stmt->execute($query_params);
-		                    echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=cms.activities.php">';
 		                } catch (PDOException $ex) { die(); }
+
+						add_to_log($db, array('user' => $_SESSION['user']['email'], 'action' => 'EDIT', 'page' => 'cms.activities.php', 'desc' => $_POST['edit_activity']));
+	                    echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=cms.activities.php">';
+
 		            }
                 }
 
@@ -157,36 +158,46 @@
                     <th class='act_delete'></th>
                 </tr>
                 <?php
-                    $act_query = mysql_query('SELECT * FROM events WHERE CURRENT_DATE() <= edate ORDER BY edate');
-                    while ($act = mysql_fetch_assoc($act_query)) {
-                        
-                        // Get subscribers
-                        $subscribers = array();
-                        if ($act['subscribers'] != '') {
-                            $sub_ids = explode(';', $act['subscribers']);
-                            foreach($sub_ids as &$id) {
-                                $name_query = mysql_query("SELECT first_name, prefix, last_name FROM users WHERE id = '$id'");
-                                while ($row = mysql_fetch_assoc($name_query)) {
-                                    array_push($subscribers, $row['first_name'] . ' ' . $row['prefix'] . ' ' . $row['last_name']);   
-                                }
-                            }
-                        }
-                        
-                        echo '  <tr>
-                                    <td class="act_title">' . $act['title'] . '</td>
-                                    <td class="act_date">' . date('j M', strtotime($act['edate'])) . '</td>
-                                    <td class="act_desc">' . $act['description'] . '</td>
-                                    <td class="act_subscribers">' . implode(', ', $subscribers) . '</td>
-                                    <td class="act_online">' . ($act['active'] ? 'Ja' : 'Nee') . '</td>
-                                    <td class="act_edit"><a href="cms.activities.php?act_id=' . $act['id'] . '" class="btn_edit"></a></td>
-                                    <td class="act_delete">
-                                        <form action="" method="POST" class="delete">
-                                            <button type="submit" name="delete_act" class="btn_delete" value="' . $act['id'] . '" onclick="return confirm(\'Weet je zeker dat je deze activiteit wilt verwijderen?\')"></button>
-                                        </form>
-                                    </td>
-                                </tr>';
-                                    
-                    }
+                	try {
+                		$stmt = $db->prepare("SELECT * FROM events WHERE CURRENT_DATE() <= edate ORDER BY edate");
+                		$stmt->execute();
+                		if ($stmt->rowCount() > 0) {
+                			foreach ($stmt as $act) {
+				                // Get subscribers
+				                $subscribers = array();
+				                if ($act['subscribers'] != '') {
+				                    $sub_ids = explode(';', $act['subscribers']);
+				                    foreach($sub_ids as &$id) {
+				                    
+				                    	try {
+				                    		$name_stmt = $db->prepare("SELECT first_name, prefix, last_name FROM users WHERE id = :id");
+				                    		$name_stmt->execute(array(':id' => $id));
+				                    		if ($name_stmt->rowCount() > 0) {
+				                    			foreach ($name_stmt as $row) {
+					                    			array_push($subscribers, $row['first_name'] . ' ' . $row['prefix'] . ' ' . $row['last_name']);   
+				                    			}
+				                    		}
+				                    	} catch (PDOException $ex) { }
+
+				                    }
+				                }
+				                
+				                echo '  <tr>
+				                            <td class="act_title">' . $act['title'] . '</td>
+				                            <td class="act_date">' . date('j M', strtotime($act['edate'])) . '</td>
+				                            <td class="act_desc">' . $act['description'] . '</td>
+				                            <td class="act_subscribers">' . implode(', ', $subscribers) . '</td>
+				                            <td class="act_online">' . ($act['active'] ? 'Ja' : 'Nee') . '</td>
+				                            <td class="act_edit"><a href="cms.activities.php?act_id=' . $act['id'] . '" class="btn_edit"></a></td>
+				                            <td class="act_delete">
+				                                <form action="" method="POST" class="delete">
+				                                    <button type="submit" name="delete_act" class="btn_delete" value="' . $act['id'] . '" onclick="return confirm(\'Weet je zeker dat je deze activiteit wilt verwijderen?\')"></button>
+				                                </form>
+				                            </td>
+				                        </tr>';                			
+                			}
+                		}
+                	} catch (PDOException $ex) { }
                 ?>
             </table>
             
@@ -195,10 +206,12 @@
 				if (isset($_POST['delete_act'])) {
 	                try {
 	                    $stmt = $db->prepare('DELETE FROM events WHERE id = :id');
-	                    $stmt->execute(array(':id' => mysql_real_escape_string($_POST['delete_act'])));
-	                    echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=cms.activities.php">';
+	                    $stmt->execute(array(':id' => $_POST['delete_act']));
 	                } catch (PDOException $ex) { die(); }
-					echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=cms.activities.php">';
+
+					add_to_log($db, array('user' => $_SESSION['user']['email'], 'action' => 'DELETE', 'page' => 'cms.activities.php', 'desc' => $_POST['delete_act']));
+                    echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=cms.activities.php">';
+                    
 				}            
             ?>
             

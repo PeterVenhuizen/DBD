@@ -57,50 +57,56 @@
             	$forbidden = array('.', '..', '.DS_Store');
             	$path = '../assets/img/photo_banner/';
             	
-            	$banner_query = mysql_query('SELECT * FROM banners WHERE banner_type = "home_banner" ORDER BY id LIMIT 3');
-            	while ($b = mysql_fetch_assoc($banner_query)) {
-            		echo '	<form id="' . $b['id'] . '" class="banner_form edit" method="POST">
+            	try {
+            		$stmt = $db->prepare("SELECT * FROM banners WHERE banner_type = 'home_banner' ORDER BY id LIMIT 3");
+            		$stmt->execute();
+            		if ($stmt->rowCount() > 0) {
+            			foreach ($stmt as $b) {
+				    		echo '	<form id="' . $b['id'] . '" class="banner_form edit" method="POST">
 
-            					<img src="' . $config['absolute_path'] . 'assets/img/photo_banner/' . $b['img'] . '" class="banner_preview">
-            					            					
-            					<label for="banner_title">Titel:</label>
-            					<input type="text" name="banner_title" class="banner_title" value="' . $b['title'] . '">
-            					
-            					<br>
-            					
-            					<label for="banner_desc">Beschrijving:</label>
-            					<textarea name="banner_desc" class="banner_desc">'. $b['description'] . '</textarea>
-            					
-            					<br>
-            					
-            					<label for="banner_url">Link:</label>
-            					<input type="text" name="banner_url" class="banner_url" value="' . $b['url'] . '">
-            					
-            					<br>
-            					
-            					<label for="banner_url_text">Link tekst:</label>
-            					<input type="text" name="banner_url_text" class="banner_url_text" value="' . $b['url_text'] . '">
-            					
-            					<br>
-            					
-            					<label for="banner_img">Afbeelding:</label>
-            					<select name="banner_img" class="banner_img">';
-								if ($handle = opendir($path)) {
-									while (false !== ($entry = readdir($handle))) {
-										$extension = strtolower(pathinfo($entry, PATHINFO_EXTENSION));
-										if (!in_array($entry, $forbidden) && in_array($extension, $ext_allowed)) {
-											echo '<option value="' . $entry . '"' . ($b['img'] == $entry ? 'SELECTED' : null) . '>' . $entry . '</option>';
+				    					<img src="' . $config['absolute_path'] . 'assets/img/photo_banner/' . $b['img'] . '" class="banner_preview">
+				    					            					
+				    					<label for="banner_title">Titel:</label>
+				    					<input type="text" name="banner_title" class="banner_title" value="' . $b['title'] . '">
+				    					
+				    					<br>
+				    					
+				    					<label for="banner_desc">Beschrijving:</label>
+				    					<textarea name="banner_desc" class="banner_desc">'. $b['description'] . '</textarea>
+				    					
+				    					<br>
+				    					
+				    					<label for="banner_url">Link:</label>
+				    					<input type="text" name="banner_url" class="banner_url" value="' . $b['url'] . '">
+				    					
+				    					<br>
+				    					
+				    					<label for="banner_url_text">Link tekst:</label>
+				    					<input type="text" name="banner_url_text" class="banner_url_text" value="' . $b['url_text'] . '">
+				    					
+				    					<br>
+				    					
+				    					<label for="banner_img">Afbeelding:</label>
+				    					<select name="banner_img" class="banner_img">';
+										if ($handle = opendir($path)) {
+											while (false !== ($entry = readdir($handle))) {
+												$extension = strtolower(pathinfo($entry, PATHINFO_EXTENSION));
+												if (!in_array($entry, $forbidden) && in_array($extension, $ext_allowed)) {
+													echo '<option value="' . $entry . '"' . ($b['img'] == $entry ? 'SELECTED' : null) . '>' . $entry . '</option>';
+												}
+											}
 										}
-									}
-								}
-            		echo '		</select>
-            		
-            					<br>
-            					
-            					<input type="submit" id="' . $b['id'] . '" class="submit_banner" value="Wijzig"> 
-            				
-            				</form>';
-            	}
+				    		echo '		</select>
+				    		
+				    					<br>
+				    					
+				    					<input type="submit" id="' . $b['id'] . '" class="submit_banner" value="Wijzig"> 
+				    				
+				    				</form>';            			
+            			}
+            		}
+            	} catch (PDOException $ex) { }
+
             ?>
             
             <img class='img_get_help' src='../assets/img/whats_this.PNG' alt='Help'>         

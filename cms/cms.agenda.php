@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 
-<?php require_once('../assets/config.php'); ?>
+<?php 
+	require_once('../assets/config.php'); 
+	include 'actions/functions.php';
+	ini_set('display_errors', 1);error_reporting(E_ALL);
+	date_default_timezone_set('Europe/Amsterdam');
+?>
 
 <html>
 
@@ -87,23 +92,24 @@
             <?php
             
                 if (isset($_POST['submit_event'])) {
-                    $activity = mysql_real_escape_string($_POST['activity']);
-                    $category = mysql_real_escape_string($_POST['category']);
-                    $location = mysql_real_escape_string($_POST['location']);
-                    $start_date = mysql_real_escape_string($_POST['start_date']);
+                    $start_date = $_POST['start_date'];
                     $mysql_start_date = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $start_date)));
                     
                     if (isset($_POST['use_end_date'])) {
-                        $end_date = mysql_real_escape_string($_POST['end_date']);
+                        $end_date = $_POST['end_date'];
                         $mysql_end_date = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $end_date)));
                     } else { $mysql_end_date = NULL; }
                     
-                    $time = (isset($_POST['use_start_time']) ? mysql_real_escape_string($_POST['time']) : NULL);
+                    $time = (isset($_POST['use_start_time']) ? $_POST['time'] : NULL);
                     
                     try {
                         $stmt = $db->prepare('INSERT INTO agenda (start_date, end_date, time, event, location, type) VALUES (:start_date, :end_date, :time, :event, :location, :type)');
-                        $stmt->execute(array(':start_date' => $mysql_start_date, ':end_date' => $mysql_end_date, ':time' => $time, ':event' => $activity, ':location' => $location, ':type' => $category)); 
-                    } catch (PDOException $ex) { die($ex->getMessage()); }
+                        $stmt->execute(array(':start_date' => $mysql_start_date, ':end_date' => $mysql_end_date, ':time' => $time, ':event' => $_POST['activity'], ':location' => $_POST['location'], ':type' => $_POST['category'])); 
+                    } catch (PDOException $ex) { die(); }
+					
+					// Save to log
+					add_to_log($db, array('user' => $_SESSION['user']['email'], 'action' => 'ADD', 'page' => 'cms.agenda.php', 'desc' => $_POST['activity']));
+                    echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=cms.agenda.php">';
                 }
 
             ?>
@@ -117,24 +123,29 @@
                     <th></th>
                 </tr>
                 <?php
-                    $event_query = mysql_query('SELECT * FROM agenda WHERE CURRENT_DATE() BETWEEN start_date AND end_date OR CURRENT_DATE() <= start_date ORDER BY start_date');
-                    while ($event = mysql_fetch_assoc($event_query)) {
-                        $event_start_date = strtotime($event['start_date']);
-                        $event_end_date = ($event['end_date'] != '' ? strtotime($event['end_date']) : '');
-                        $event_time = strtotime($event['time']);
-                        
-                        echo '  <tr>
-                                    <td class="event_title">' . $event['event'] . '</td>
-                                    <td class="event_date">' . date('j M', $event_start_date) . ($event_end_date != '' ? ' - ' . date('j M', $event_end_date) : '') . '</td>
-                                    <td class="event_time">' . ($event_time != '' ? date('G:i', $event_time) : '') . '</td>
-                                    <td class="event_location">' . $event['location'] . '</td>
-                                    <td class="event_delete">
-                                        <form action="" method="POST" class="delete">
-                                            <button type="submit" name="delete_event" class="btn_delete" value="' . $event['id'] . '" onclick="return confirm(\'Weet je zeker dat je dit event wilt verwijderen?\')"></button>
-                                        </form>
-                                    </td>
-                                </tr>';
-                    }
+                	try {
+                		$stmt = $db->prepare("SELECT * FROM agenda WHERE CURRENT_DATE() BETWEEN start_date AND end_date OR CURRENT_DATE() <= start_date ORDER BY start_date");
+                		$stmt->execute();
+                		if ($stmt->rowCount() > 0) {
+                			foreach ($stmt as $event) {
+				                $event_start_date = strtotime($event['start_date']);
+				                $event_end_date = ($event['end_date'] != '' ? strtotime($event['end_date']) : '');
+				                $event_time = strtotime($event['time']);
+				                
+				                echo '  <tr>
+				                            <td class="event_title">' . $event['event'] . '</td>
+				                            <td class="event_date">' . date('j M', $event_start_date) . ($event_end_date != '' ? ' - ' . date('j M', $event_end_date) : '') . '</td>
+				                            <td class="event_time">' . ($event_time != '' ? date('G:i', $event_time) : '') . '</td>
+				                            <td class="event_location">' . $event['location'] . '</td>
+				                            <td class="event_delete">
+				                                <form action="" method="POST" class="delete">
+				                                    <button type="submit" name="delete_event" class="btn_delete" value="' . $event['id'] . '" onclick="return confirm(\'Weet je zeker dat je dit event wilt verwijderen?\')"></button>
+				                                </form>
+				                            </td>
+				                        </tr>';
+                			}
+                		}
+                	} catch (PDOException $ex) { }
                 ?>
             </table>
             
@@ -143,8 +154,11 @@
 				if (isset($_POST['delete_event'])) {
 	                try {
 	                    $stmt = $db->prepare('DELETE FROM agenda WHERE id = :id');
-	                    $stmt->execute(array(':id' => mysql_real_escape_string($_POST['delete_event'])));
+	                    $stmt->execute(array(':id' => $_POST['delete_event']));
 	                } catch (PDOException $ex) { die(); }
+					
+					// Save to log
+					add_to_log($db, array('user' => $_SESSION['user']['email'], 'action' => 'ADD', 'page' => 'cms.agenda.php', 'desc' => $_POST['delete_event']));
                     echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=cms.agenda.php">';
 				}            
             ?>
